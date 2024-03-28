@@ -1,5 +1,6 @@
 <script>
   import AppHeader from './components/AppHeader.vue';
+  import ProjectCard from './components/projects/ProjectCard.vue';
   import axios from 'axios';
 const baseEndpoint = 'http://localhost:8000/api/projects/'
   export default {
@@ -9,11 +10,10 @@ const baseEndpoint = 'http://localhost:8000/api/projects/'
         projects: []
       }
     },
-    components: {AppHeader},
+  components: { AppHeader, ProjectCard },
     methods: {
       fetchProjects() {
         axios.get(baseEndpoint).then((res) => {
-          console.log(res.data)
           this.projects = res.data
         })
       }
@@ -26,17 +26,15 @@ const baseEndpoint = 'http://localhost:8000/api/projects/'
 
 <template>
   <!-- header -->
-  <AppHeader/>
+  <AppHeader />
   <!-- header -->
 
-  <div class="container my-4">
-    <p v-for="project in projects">
-      {{ project.title }}
-    </p>
+  <div class="container my-5 ">
+      <ProjectCard v-for="project in projects" :project="project" />
   </div>
 
 </template>
 
 <style lang='scss' scoped>
   /* style here */
-</style>
+</style>./components/projects/ProjectCard.vue
