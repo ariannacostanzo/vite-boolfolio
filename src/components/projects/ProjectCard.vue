@@ -1,9 +1,9 @@
 <script>
-  export default {
+export default {
     name: 'ProjectCards',
     props: { project: Object },
     computed: {
-        abstract(){
+        abstract() {
             if (this.project.description.length < 100) {
                 return this.project.description
             }
@@ -28,23 +28,26 @@
             return `${day}/${month}/${year} alle ${hours}:${minutes}`
         }
     }
-  }
+}
 </script>
 
 <template>
     <div class="card mb-3">
         <div class="row g-0">
-            <div class="col-md-4">
+            <div class="col-md-4 img-container">
                 <img @if="project.image" :src="project.image" class="img-fluid rounded-start" :alt="project.title">
             </div>
             <div class="col-md-8 ">
                 <div class="card-body h-100 d-flex flex-column justify-content-between">
                     <div>
                         <h5 class="card-title">{{ project.title }}</h5>
-                        <p class="card-text">{{abstract}}</p>
+                        <p class="card-text">{{ abstract }}</p>
                     </div>
-                    <p class="card-text"><small class="text-body-secondary"> Creato: {{ creationDate }}</small>
-                    </p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <p class="card-text"><small class="text-body-secondary"> Creato: {{ creationDate }}</small></p>
+                        <span class="badge text-black" :style="{ backgroundColor: project.type.color }">{{
+                            project.type.label }}</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,5 +55,13 @@
 </template>
 
 <style lang='scss' scoped>
-  /* style here */
+.card {
+    height: 200px;
+    .img-container {
+        height: 199px;
+        img {
+            height: 100%;
+        }
+    }
+}
 </style>
