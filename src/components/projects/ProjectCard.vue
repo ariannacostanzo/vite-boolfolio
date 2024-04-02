@@ -47,6 +47,9 @@ export default {
                         <p class="card-text"><small class="text-body-secondary"> Creato: {{ creationDate }}</small></p>
                         <span class="badge text-black" :style="{ backgroundColor: project.type.color }">{{
                             project.type.label }}</span>
+                        <RouterLink class="btn btn-primary" :to="`/projects/${project.id}`">Guarda dettagli</RouterLink>
+                        <!-- oppure  -->
+                        <!-- <RouterLink class="btn btn-primary" :to="{name: 'project-detail', params: {id: post.id}}">Guarda dettagli</RouterLink> -->
                     </div>
                 </div>
             </div>
