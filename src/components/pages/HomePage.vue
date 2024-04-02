@@ -3,7 +3,7 @@ import ProjectCard from '../projects/ProjectCard.vue';
 import axios from 'axios';
 const baseEndpoint = 'http://localhost:8000/api/projects/'
 export default {
-    name: 'HomePAge',
+    name: 'HomePage',
     data() {
         return {
             projects: []
