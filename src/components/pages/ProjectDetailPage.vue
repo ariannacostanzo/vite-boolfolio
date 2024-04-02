@@ -7,7 +7,8 @@ export default {
     components: { ProjectCard },
     data() {
         return {
-            project: null
+            project: null,
+
         }
     },
     methods: {
@@ -29,7 +30,7 @@ export default {
 </script>
 
 <template>
-    <ProjectCard v-if="project" :project="project"/>
+    <ProjectCard v-if="project" :project="project" :isDetail="true" />
 
 </template>
 

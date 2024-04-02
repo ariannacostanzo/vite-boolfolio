@@ -25,7 +25,7 @@ export default {
 
 <template>
 
-<ProjectCard v-for="project in projects" :project="project" />
+<ProjectCard v-for="project in projects" :project="project" :isDetail="false"/>
 
 </template>
 
