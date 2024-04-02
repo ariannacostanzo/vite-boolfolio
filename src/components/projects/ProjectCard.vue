@@ -40,14 +40,27 @@ export default {
             <div class="col-md-8 ">
                 <div class="card-body h-100 d-flex flex-column justify-content-between">
                     <div>
-                        <h5 class="card-title">{{ project.title }}</h5>
+                        <div class="d-flex align-items-center justify-content-between">
+
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <span class="badge text-black rounded-pill"
+                                :style="{ backgroundColor: project.type?.color }">{{
+                            project.type.label }}</span>
+                        </div>
                         <p class="card-text">{{ isDetail ? project.description : abstract }}</p>
+
+                        <div v-if="project.technologies?.length">
+
+                            <span v-for="tech in project.technologies" :key="tech.id" class="badge me-2"
+                                :style="{ backgroundColor: tech.color }">{{
+                            tech.label }}</span>
+                        </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-between">
                         <p class="card-text"><small class="text-body-secondary"> Creato: {{ creationDate }}</small></p>
-                        <span class="badge text-black" :style="{ backgroundColor: project.type.color }">{{
-                            project.type.label }}</span>
-                        <RouterLink v-if="!isDetail" class="btn btn-primary" :to="`/projects/${project.slug}`">Guarda dettagli</RouterLink>
+
+                        <RouterLink v-if="!isDetail" class="btn btn-primary" :to="`/projects/${project.slug}`">Guarda
+                            dettagli</RouterLink>
                         <!-- oppure  -->
                         <!-- <RouterLink class="btn btn-primary" :to="{name: 'project-detail', params: {id: post.id}}">Guarda dettagli</RouterLink> -->
                     </div>
@@ -58,5 +71,7 @@ export default {
 </template>
 
 <style lang='scss' scoped>
-
+.card-text {
+    margin: 0;
+}
 </style>
