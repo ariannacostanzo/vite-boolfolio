@@ -35,7 +35,9 @@ export default {
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4 img-container">
-                <img @if="project.image" :src="project.image" class="img-fluid rounded-start" :alt="project.title">
+                <img v-if="project.image" :src="project.image" class="img-fluid rounded-start" :alt="project.title">
+                <img v-else src="https://i1.wp.com/potafiori.com/wp-content/uploads/2020/04/placeholder.png?ssl=1"
+                    class="img-fluid rounded-start placeholder" alt="placeholder">
             </div>
             <div class="col-md-8 ">
                 <div class="card-body h-100 d-flex flex-column justify-content-between">
@@ -43,7 +45,7 @@ export default {
                         <div class="d-flex align-items-center justify-content-between">
 
                             <h5 class="card-title">{{ project.title }}</h5>
-                            <routerLink :to="`types/${project.type.label}/projects`">
+                            <routerLink v-if="project.type" :to="`types/${project.type.slug}/projects`">
                                 <span class="badge text-black rounded-pill"
                                     :style="{ backgroundColor: project.type?.color }">{{
                                     project.type.label }}</span>
@@ -78,5 +80,11 @@ export default {
 <style lang='scss' scoped>
 .card-text {
     margin: 0;
+}
+
+.placeholder {
+    height: 200px;
+    width: 400px;
+    cursor: auto;
 }
 </style>
