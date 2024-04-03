@@ -43,9 +43,12 @@ export default {
                         <div class="d-flex align-items-center justify-content-between">
 
                             <h5 class="card-title">{{ project.title }}</h5>
-                            <span class="badge text-black rounded-pill"
-                                :style="{ backgroundColor: project.type?.color }">{{
-                            project.type.label }}</span>
+                            <routerLink :to="`types/${project.type.label}/projects`">
+                                <span class="badge text-black rounded-pill"
+                                    :style="{ backgroundColor: project.type?.color }">{{
+                                    project.type.label }}</span>
+                            </routerLink>
+
                         </div>
                         <p class="card-text">{{ isDetail ? project.description : abstract }}</p>
 
@@ -53,7 +56,7 @@ export default {
 
                             <span v-for="tech in project.technologies" :key="tech.id" class="badge me-2"
                                 :style="{ backgroundColor: tech.color }">{{
-                            tech.label }}</span>
+                                tech.label }}</span>
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-between">
@@ -61,6 +64,8 @@ export default {
 
                         <RouterLink v-if="!isDetail" class="btn btn-primary" :to="`/projects/${project.slug}`">Guarda
                             dettagli</RouterLink>
+                        <button v-else class="btn btn-primary" @click="$router.back()">Torna indietro</button>
+
                         <!-- oppure  -->
                         <!-- <RouterLink class="btn btn-primary" :to="{name: 'project-detail', params: {id: post.id}}">Guarda dettagli</RouterLink> -->
                     </div>
